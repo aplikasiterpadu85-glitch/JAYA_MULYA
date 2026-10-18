@@ -1,6 +1,6 @@
-```javascript
-// Service Worker Canggih untuk JayaMulya
-const CACHE_NAME = 'jayamulya-v2';
+const CACHE_NAME = 'jayamulya-v3';
+const OFFLINE_URL = './index.html';
+
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -9,25 +9,21 @@ const STATIC_ASSETS = [
   './launchericon-512x512.png'
 ];
 
-// Install Event: Simpan aset penting ke cache
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[SW] Caching static assets');
       return cache.addAll(STATIC_ASSETS);
     })
   );
   self.skipWaiting();
 });
 
-// Activate Event: Hapus cache lama jika ada update
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
-            console.log('[SW] Deleting old cache:', cache);
             return caches.delete(cache);
           }
         })
@@ -37,32 +33,47 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch Event: Stale-While-Revalidate Strategy (Cepat & Always Updated)
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.match(event.request).then((cachedResponse) => {
-        const fetchedResponse = fetch(event.request).then((networkResponse) => {
-          if (networkResponse.status === 200) {
-            cache.put(event.request, networkResponse.clone());
+    caches.match(event.request).then((cachedResponse) => {
+      const fetchPromise = fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseToCache = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
           }
           return networkResponse;
-        }).catch(() => {
-          return cachedResponse || caches.match('./index.html');
+        })
+        .catch(() => {
+          return cachedResponse || caches.match(OFFLINE_URL);
         });
 
-        return cachedResponse || fetchedResponse;
-      });
+      return cachedResponse || fetchPromise;
     })
   );
 });
 
-// Background Sync (Untuk Sinkronisasi saat koneksi kembali online)
 self.addEventListener('sync', (event) => {
   if (event.tag === 'sync-data') {
-    console.log('[SW] Background sync triggered');
+    console.log('[SW] Sync event');
   }
 });
-```
+
+self.addEventListener('periodicsync', (event) => {
+  console.log('[SW] Periodic sync event');
+});
+
+self.addEventListener('push', (event) => {
+  const data = event.data ? event.data.text() : 'Notifikasi JayaMulya';
+  const options = {
+    body: data,
+    icon: './launchericon-192x192.png'
+  };
+  event.waitUntil(
+    self.registration.showNotification('JayaMulya 3D', options)
+  );
+});
