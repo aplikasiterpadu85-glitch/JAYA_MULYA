@@ -1,29 +1,74 @@
 {
-  "background_color": "#eff7f7",
-  "dir": "ltr",
-  "display": "standalone",
   "name": "JAYA MULYA 3D",
-  "orientation": "any",
-  "scope": "/JAYA_MULYA/",
   "short_name": "JayaMulya",
-  "start_url": "/JAYA_MULYA/index.html",
-  "theme_color": "#ffffff",
   "id": "JAYA_MULYA",
-  "description": "aplikasi pencatat keuangan dan laporan by ayik",
+  "description": "Aplikasi pencatat keuangan dan laporan by ayik",
+  "start_url": "/JAYA_MULYA/index.html",
+  "scope": "/JAYA_MULYA/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#eff7f7",
+  "theme_color": "#ffffff",
+  "dir": "ltr",
   "lang": "id",
   "categories": [
-    "business"
+    "business",
+    "finance",
+    "utilities"
   ],
   "icons": [
     {
       "src": "./launchericon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "./launchericon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Laporan Keuangan",
+      "short_name": "Laporan",
+      "description": "Buka langsung menu laporan",
+      "url": "/JAYA_MULYA/index.html#laporan",
+      "icons": [
+        {
+          "src": "./launchericon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Tambah Item / Transaksi",
+      "short_name": "Tambah",
+      "description": "Tambah transaksi atau produk baru",
+      "url": "/JAYA_MULYA/index.html#item",
+      "icons": [
+        {
+          "src": "./launchericon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/JAYA_MULYA/index.html",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+jayamulya",
+      "url": "/JAYA_MULYA/index.html?query=%s"
     }
   ]
 }
