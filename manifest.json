@@ -1,12 +1,12 @@
 {
   "background_color": "#eff7f7",
   "dir": "ltr",
-  "display": "fullscreen",
+  "display": "standalone",
   "name": "JAYA MULYA 3D",
   "orientation": "any",
-  "scope": "/",
+  "scope": "/JAYA_MULYA/",
   "short_name": "JayaMulya",
-  "start_url": "/.index.html",
+  "start_url": "/JAYA_MULYA/index.html",
   "theme_color": "#ffffff",
   "id": "JAYA_MULYA",
   "description": "aplikasi pencatat keuangan dan laporan by ayik",
@@ -14,8 +14,6 @@
   "categories": [
     "business"
   ],
-  "lang": "id",
-  "id": "JAYA_MULYA",
   "icons": [
     {
       "src": "./launchericon-192x192.png",
