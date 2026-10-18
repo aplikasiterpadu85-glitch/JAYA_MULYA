@@ -6,6 +6,12 @@
   "start_url": "/JAYA_MULYA/index.html",
   "scope": "/JAYA_MULYA/",
   "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "tabbed",
+    "standalone",
+    "browser"
+  ],
   "orientation": "any",
   "background_color": "#eff7f7",
   "theme_color": "#ffffff",
@@ -69,6 +75,43 @@
     {
       "protocol": "web+jayamulya",
       "url": "/JAYA_MULYA/index.html?query=%s"
+    }
+  ],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "widgets": [
+    {
+      "name": "Ringkasan JayaMulya",
+      "short_name": "Ringkasan",
+      "description": "Widget laporan singkat JayaMulya",
+      "tag": "jayamulya-widget",
+      "template": "widget-template",
+      "ms_ac_template": "widget.json",
+      "data": "widget-data.json",
+      "type": "text/html",
+      "screenshots": [
+        {
+          "src": "./launchericon-512x512.png",
+          "sizes": "512x512",
+          "label": "Tampilan Widget"
+        }
+      ]
+    }
+  ],
+  "note_taking": {
+    "new_note_url": "/JAYA_MULYA/index.html#note"
+  },
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "file_handlers": [
+    {
+      "action": "/JAYA_MULYA/index.html",
+      "accept": {
+        "text/plain": [".txt"],
+        "application/json": [".json"]
+      }
     }
   ]
 }
