@@ -1839,18 +1839,18 @@
             if (trans.items && trans.items.length > 0) {
                 trans.items.forEach(item => {
                     if (showNominal) {
-                        lines.push(`${item.nama} = Jumlah: ${item.qty}`);
-                        lines.push(`  Jumlah: ${item.qty} x ${formatRp(item.harga)} = ${formatRp(item.subtotal)}`);
+                        lines.push(`${item.nama} = : ${item.qty}`);
+                        lines.push(`  : ${item.qty} x ${formatRp(item.harga)} = ${formatRp(item.subtotal)}`);
                     } else {
-                        lines.push(`${item.nama} = Jumlah: ${item.qty}`);
+                        lines.push(`${item.nama} = : ${item.qty}`);
                     }
                 });
             } else {
                 if (showNominal) {
-                    lines.push(`Item Transaksi = Jumlah: 1`);
-                    lines.push(`  Jumlah: 1 x ${formatRp(trans.totalHarga)} = ${formatRp(trans.totalHarga)}`);
+                    lines.push(`Item Transaksi = : 1`);
+                    lines.push(`  : 1 x ${formatRp(trans.totalHarga)} = ${formatRp(trans.totalHarga)}`);
                 } else {
-                    lines.push(`Item Transaksi = Jumlah: 1`);
+                    lines.push(`Item Transaksi = : 1`);
                 }
             }
 
