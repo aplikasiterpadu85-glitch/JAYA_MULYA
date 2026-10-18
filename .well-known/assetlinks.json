@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.aplikasiterpadu85_glitch.jayamulya",
+        "sha256_cert_fingerprints": ["84:0F:FD:7C:0F:2E:D1:C0:2F:28:D5:BF:9D:D7:22:7F:C9:10:07:84:51:11:57:5C:68:57:2F:21:CE:98:EE:88"]
+      }
+    }]
